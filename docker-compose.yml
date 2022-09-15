@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  gachon-springboot:
+    platform: linux/x86_64
+    image: mysql:latest
+    container_name: GachonSpringBoot
+    ports:
+      - "3306:3306"
+    environment:
+      - TZ=+09:00
+      - MYSQL_DATABASE=board
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=p@ssword
+      - MYSQL_ROOT_PASSWORD=p@ssword
