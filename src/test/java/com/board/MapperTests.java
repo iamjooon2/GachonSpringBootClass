@@ -32,7 +32,7 @@ class MapperTests {
 
 	@Test
 	public void testOfSelectDetail() {
-		BoardDTO board = boardMapper.selectBoardDetail((long)1);
+		BoardDTO board = boardMapper.selectBoardDetail((long) 1);
 		try {
 			String boardJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(board);
 			System.out.println("=========================");
@@ -69,7 +69,7 @@ class MapperTests {
 
 	@Test
 	private void testOfDelete() {
-		int result = boardMapper.deleteBoard((long)1);
+		int result = boardMapper.deleteBoard((long) 1);
 		if (result == 1) {
 			BoardDTO board = boardMapper.selectBoardDetail((long)1);
 			try {
