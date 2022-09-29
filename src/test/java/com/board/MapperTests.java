@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @SpringBootTest
-class MapperTests {
+public class MapperTests {
 
 	@Autowired
 	private BoardMapper boardMapper;
@@ -32,7 +32,7 @@ class MapperTests {
 
 	@Test
 	public void testOfSelectDetail() {
-		BoardDTO board = boardMapper.selectBoardDetail((long) 1);
+		BoardDTO board = boardMapper.selectBoardDetail((long)1);
 		try {
 			String boardJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(board);
 			System.out.println("=========================");
@@ -45,7 +45,7 @@ class MapperTests {
 	}
 
 	@Test
-	private void testOfUpdate() {
+	public void testOfUpdate() {
 		BoardDTO params = new BoardDTO();
 		params.setTitle("1번 게시글 제목을 수정합니다.");
 		params.setContent("1번 게시글 내용을 수정합니다.");
@@ -68,8 +68,8 @@ class MapperTests {
 	}
 
 	@Test
-	private void testOfDelete() {
-		int result = boardMapper.deleteBoard((long) 1);
+	public void testOfDelete() {
+		int result = boardMapper.deleteBoard((long)1);
 		if (result == 1) {
 			BoardDTO board = boardMapper.selectBoardDetail((long)1);
 			try {
@@ -85,17 +85,17 @@ class MapperTests {
 	}
 
 	@Test
-	public void testSelect() {
+	public void testSelectList() {
 		int boardTotalCount = boardMapper.selectBoardTotalCount();
-		if (boardTotalCount> 0) {
+		if(boardTotalCount > 0) {
 			List<BoardDTO> boardList = boardMapper.selectBoardList();
-			if ( CollectionUtils.isEmpty(boardList) == false) {
-				for (BoardDTO board: boardList) {
-					System.out.println("======================");
+			if(CollectionUtils.isEmpty(boardList) == false) {
+				for(BoardDTO board : boardList) {
+					System.out.println("=========================");
 					System.out.println(board.getTitle());
 					System.out.println(board.getContent());
 					System.out.println(board.getWriter());
-					System.out.println("======================");
+					System.out.println("=========================");
 				}
 			}
 		}

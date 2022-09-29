@@ -37,7 +37,7 @@ public class BoardDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getIdx() {
+	public Long getIdx() {
 		return idx;
 	}
 	public void setIdx(long idx) {
