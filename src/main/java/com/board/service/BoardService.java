@@ -1,12 +1,12 @@
 package com.board.service;
 
-import com.board.domain.BoardDTO;
-
 import java.util.List;
 
+import com.board.domain.BoardDTO;
+
 public interface BoardService {
-    public boolean registerBoard(BoardDTO params);
-    public BoardDTO getBoardDetail(Long idx);
-    public boolean deleteBoard(Long idx);
-    public List<BoardDTO> getBoardList();
+	public boolean registerBoard(BoardDTO params);
+	public BoardDTO getBoardDetail(long idx);
+	public boolean deleteBoard(Long idx);
+	public List<BoardDTO> getBoardList(BoardDTO params);
 }
