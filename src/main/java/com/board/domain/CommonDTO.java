@@ -1,17 +1,23 @@
 package com.board.domain;
 
-import com.board.paging.PaginationInfo;
-import com.board.paging.Criteria;
-
 import java.time.LocalDateTime;
+
+import com.board.paging.Criteria;
+import com.board.paging.PaginationInfo;
 
 public class CommonDTO extends Criteria {
 
-    private PaginationInfo paginationInfo; // 페이징정보
-    private String deleteYn; // 삭제여부
-    private LocalDateTime insertTime; // 등록일
-    private LocalDateTime updateTime; // 수정일
-    private LocalDateTime deleteTime; // 삭제일
+    private PaginationInfo paginationInfo;
+    private String deleteYn;
+    private LocalDateTime insertTime;
+    private LocalDateTime updateTime;
+    private LocalDateTime deleteTime;
+
+    @Override
+    public String toString() {
+        return "CommonDTO [paginationInfo=" + paginationInfo + ", deleteYn=" + deleteYn + ", insertTime=" + insertTime
+                + ", updateTime=" + updateTime + ", deleteTime=" + deleteTime + "]";
+    }
 
     public PaginationInfo getPaginationInfo() {
         return paginationInfo;

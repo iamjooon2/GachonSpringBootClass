@@ -3,12 +3,13 @@ package com.board.service;
 import java.util.Collections;
 import java.util.List;
 
-import com.board.paging.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.board.domain.BoardDTO;
 import com.board.mapper.BoardMapper;
+import com.board.paging.Criteria;
+import com.board.paging.PaginationInfo;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -21,7 +22,9 @@ public class BoardServiceImpl implements BoardService {
 		
 		if(params.getIdx() == null) {
 			queryResult = boardMapper.insertBoard(params);
-		} else queryResult = boardMapper.updateBoard(params);
+		} else {
+			queryResult = boardMapper.updateBoard(params);
+		}
 		return (queryResult == 1) ? true : false;
 	}
 	
@@ -31,7 +34,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean deleteBoard(Long idx) {
+	public boolean deleteBoard(long idx) {
 		// TODO Auto-generated method stub
 		int queryResult = 0;
 		
@@ -45,15 +48,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardDTO> getBoardList(BoardDTO params) {
+		// TODO Auto-generated method stub
 		List<BoardDTO> boardList = Collections.emptyList();
 		
 		int boardTotalCount = boardMapper.selectBoardTotalCount(params);
-
-		PaginationInfo paginationInfo= new PaginationInfo(params);
+		
+		PaginationInfo paginationInfo = new PaginationInfo(params);
 		paginationInfo.setTotalRecordCount(boardTotalCount);
-
+		
 		params.setPaginationInfo(paginationInfo);
-
+		
 		if(boardTotalCount > 0) {
 			boardList = boardMapper.selectBoardList(params);
 		}

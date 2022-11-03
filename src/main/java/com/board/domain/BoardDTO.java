@@ -2,67 +2,74 @@ package com.board.domain;
 
 public class BoardDTO extends CommonDTO {
 
-	private Long idx;
-	private String title;
-	private String content;
-	private String writer;
-	private int viewCnt;
-	private String noticeYn;
-	private String secretYn;
+    private Long idx;
+    private String title;
+    private String content;
+    private String writer;
+    private int viewCnt;
+    private String noticeYn;
+    private String secretYn;
 
-	public Long getIdx() {
-		return idx;
-	}
+    @Override
+    public String toString() {
+        return "BoardDTO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
+                + ", viewCnt=" + viewCnt + ", noticeYn=" + noticeYn + ", secretYn=" + secretYn + "]";
+    }
 
-	public void setIdx(Long idx) {
-		this.idx = idx;
-	}
+    public Long getIdx() {
+        return idx;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setIdx(Long idx) {
+        this.idx = idx;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public String getWriter() {
-		return writer;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
+    public String getWriter() {
+        return writer;
+    }
 
-	public int getViewCnt() {
-		return viewCnt;
-	}
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
 
-	public void setViewCnt(int viewCnt) {
-		this.viewCnt = viewCnt;
-	}
+    public int getViewCnt() {
+        return viewCnt;
+    }
 
-	public String getNoticeYn() {
-		return noticeYn;
-	}
+    public void setViewCnt(int viewCnt) {
+        this.viewCnt = viewCnt;
+    }
 
-	public void setNoticeYn(String noticeYn) {
-		this.noticeYn = noticeYn;
-	}
+    public String getNoticeYn() {
+        return noticeYn;
+    }
 
-	public String getSecretYn() {
-		return secretYn;
-	}
+    public void setNoticeYn(String noticeYn) {
+        this.noticeYn = noticeYn;
+    }
 
-	public void setSecretYn(String secretYn) {
-		this.secretYn = secretYn;
-	}
+    public String getSecretYn() {
+        return secretYn;
+    }
+
+    public void setSecretYn(String secretYn) {
+        this.secretYn = secretYn;
+    }
+
 }

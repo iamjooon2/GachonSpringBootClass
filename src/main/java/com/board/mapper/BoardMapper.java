@@ -9,9 +9,9 @@ import com.board.domain.BoardDTO;
 @Mapper
 public interface BoardMapper {
 	public int insertBoard(BoardDTO params);
-	public BoardDTO selectBoardDetail(Long idx);
+	public BoardDTO selectBoardDetail(long idx);
 	public int updateBoard(BoardDTO params);
-	public int deleteBoard(Long idx);
+	public int deleteBoard(long idx);
 	public List<BoardDTO> selectBoardList(BoardDTO params);
 	public int selectBoardTotalCount(BoardDTO params);
 }

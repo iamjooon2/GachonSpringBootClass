@@ -4,86 +4,86 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class Criteria {
-	private int currentPageNo;
-	private int recordsPerPage;
-	private int recordsPage;
-	private int pageSize;
-	private String searchKeyword;
-	private String searchType;
-	
-	public Criteria() {
-		this.currentPageNo = 1;
-		this.recordsPerPage = 10;
-		this.pageSize = 10;
-	}
-	
-	public int getStartPage() {
-		return (currentPageNo - 1) * recordsPerPage;
-	}
+    private int currentPageNo;
+    private int recordsPerPage;
+    private int recordsPage;
+    private int pageSize;
+    private String searchKeyword;
+    private String searchType;
 
-	public int getCurrentPageNo() {
-		return currentPageNo;
-	}
+    public Criteria() {
+        this.currentPageNo = 1;
+        this.recordsPerPage = 10;
+        this.pageSize = 10;
+    }
 
-	public void setCurrentPageNo(int currentPageNo) {
-		this.currentPageNo = currentPageNo;
-	}
+    public int getStartPage() {
+        return (currentPageNo - 1) * recordsPerPage;
+    }
 
-	public int getRecordsPerPage() {
-		return recordsPerPage;
-	}
+    public String makeQueryString(int pageNo) {
+        UriComponents uriComponents = UriComponentsBuilder.newInstance()
+                .queryParam("currentPageNo", pageNo)
+                .queryParam("recordsPerPage", recordsPerPage)
+                .queryParam("pageSize", pageSize)
+                .queryParam("searchType", searchType)
+                .queryParam("searchKeyword", searchKeyword)
+                .build().encode();
+        return uriComponents.toUriString();
+    }
 
-	public void setRecordsPerPage(int recordsPerPage) {
-		this.recordsPerPage = recordsPerPage;
-	}
+    public int getCurrentPageNo() {
+        return currentPageNo;
+    }
 
-	public int getRecordsPage() {
-		return recordsPage;
-	}
+    public void setCurrentPageNo(int currentPageNo) {
+        this.currentPageNo = currentPageNo;
+    }
 
-	public void setRecordsPage(int recordsPage) {
-		this.recordsPage = recordsPage;
-	}
+    public int getRecordsPerPage() {
+        return recordsPerPage;
+    }
 
-	public int getPageSize() {
-		return pageSize;
-	}
+    public void setRecordsPerPage(int recordsPerPage) {
+        this.recordsPerPage = recordsPerPage;
+    }
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
+    public int getRecordsPage() {
+        return recordsPage;
+    }
 
-	public String getSearchKeyword() {
-		return searchKeyword;
-	}
+    public void setRecordsPage(int recordsPage) {
+        this.recordsPage = recordsPage;
+    }
 
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
-	}
+    public int getPageSize() {
+        return pageSize;
+    }
 
-	public String getSearchType() {
-		return searchType;
-	}
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
-	}
+    public String getSearchKeyword() {
+        return searchKeyword;
+    }
 
-	@Override
-	public String toString() {
-		return "Criteria [currentPageNo=" + currentPageNo + ", recordsPerPage=" + recordsPerPage + ", recordsPage="
-				+ recordsPage + ", pageSize=" + pageSize + ", searchKeyword=" + searchKeyword + ", searchType="
-				+ searchType + "]";
-	}
-	public String makeQueryString(int pageNo) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
-				.queryParam("currentPageNo", pageNo)
-				.queryParam("recordsPerPage", recordsPerPage)
-				.queryParam("pageSize", pageSize)
-				.queryParam("searchType", searchType)
-				.queryParam("searchKeyword", searchKeyword)
-				.build()
-				.encode();
-		return uriComponents.toUriString();
-	}
+    public void setSearchKeyword(String searchKeyword) {
+        this.searchKeyword = searchKeyword;
+    }
+
+    public String getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
+    @Override
+    public String toString() {
+        return "Criteria [currentPageNo=" + currentPageNo + ", recordsPerPage=" + recordsPerPage + ", recordsPage="
+                + recordsPage + ", pageSize=" + pageSize + ", searchKeyword=" + searchKeyword + ", searchType="
+                + searchType + "]";
+    }
 }
