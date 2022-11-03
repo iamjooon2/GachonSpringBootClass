@@ -75,7 +75,6 @@ public class Criteria {
 				+ recordsPage + ", pageSize=" + pageSize + ", searchKeyword=" + searchKeyword + ", searchType="
 				+ searchType + "]";
 	}
-
 	public String makeQueryString(int pageNo) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("currentPageNo", pageNo)
