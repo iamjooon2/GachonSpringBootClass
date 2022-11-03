@@ -5,7 +5,7 @@ import com.board.paging.Criteria;
 
 import java.time.LocalDateTime;
 
-public class CommonDTO extends Criteria{
+public class CommonDTO extends Criteria {
 
     private PaginationInfo paginationInfo; // 페이징정보
     private String deleteYn; // 삭제여부
