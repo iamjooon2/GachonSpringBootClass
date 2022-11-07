@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.board.domain.BoardDTO;
 import com.board.mapper.BoardMapper;
-import com.board.paging.Criteria;
 import com.board.paging.PaginationInfo;
 
 @Service
