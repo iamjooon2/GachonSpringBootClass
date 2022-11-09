@@ -392,7 +392,7 @@ h4 strong {
 }
 .btn.btn-bordered {
   background: #ffffff;
-  color: #435966;
+  color: #006442;
   border: 2px solid #e4e7ea;
 }
 .btn.btn-bordered:hover {
@@ -547,7 +547,7 @@ h4 strong {
   margin-left: 8px;
 }
 .btn-primary {
-  background: #1d84df;
+  background: #A4A23F;
 }
 .btn-primary:hover,
 .btn-primary:active,
@@ -831,7 +831,7 @@ Version 1.0
   z-index: 20;
   right: 0px;
   padding: 0px 20px 0px 20px;
-  background: #1d84df;
+  background: #006442;
   color: #ffffff;
 }
 .fixed-navbar .searchform {
