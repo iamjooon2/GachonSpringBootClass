@@ -23,7 +23,7 @@ class CommentTests {
 
         for (int i = 1; i <= number; i += 1) {
             CommentDTO params = new CommentDTO();
-            params.setBoardIdx((long) 6529); // 댓글을 추가할 게시글 번호
+            params.setBoardIdx((long) 1); // 댓글을 추가할 게시글 번호
             params.setContent(i + "번 댓글을 추가합니다!");
             params.setWriter(i + "번 회원");
             commentService.registerComment(params);
@@ -32,7 +32,7 @@ class CommentTests {
 
     @Test
     public void deleteComment() {
-        commentService.deleteComment((long) 10); // 삭제할 댓글 번호
+        commentService.deleteComment((long) 1); // 삭제할 댓글 번호
 
         getCommentList();
     }
@@ -40,7 +40,7 @@ class CommentTests {
     @Test
     public void getCommentList() {
         CommentDTO params = new CommentDTO();
-        params.setBoardIdx((long) 6529); // 댓글을 추가할 게시글 번호
+        params.setBoardIdx((long) 1); // 댓글을 추가할 게시글 번호
 
         commentService.getCommentList(params);
     }
