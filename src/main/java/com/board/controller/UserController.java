@@ -51,5 +51,14 @@ public class UserController extends UiUtils {
     }
 
 
+    @PostMapping(value = "/user/register")
+    public String registerUser(@ModelAttribute("params") UserDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
+        if (userService.signUpUser(params)){
+            return "/";
+        }
+        return showMessageWithRedirect("에러 발생! 다시 회원가입 해주세용", "/signUp", Method.GET, null, model);
+    }
+
+
 
 }

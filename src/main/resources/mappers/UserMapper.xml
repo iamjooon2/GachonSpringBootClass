@@ -13,7 +13,7 @@
 		, update_time
     </sql>
 
-    <insert id="signInUser" parameterType="UserDTO">
+    <insert id="signUpUser" parameterType="UserDTO">
         INSERT INTO user (
             <include refid="userColumns" />
         ) VALUES (
