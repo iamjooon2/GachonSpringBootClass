@@ -33,19 +33,14 @@ public class UserController extends UiUtils {
         return "board/list";
     }
 
-//    @PostMapping(value = "/user/register")
-//    public String registerUser(UserDTO param){
-//        UserDTO param = new UserDTO();
-//
-//        return "redirect:/";
-//    }
-//
 
     @PostMapping(value = "/user/login")
     public String loginUser(@ModelAttribute("params") UserDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
+        System.out.println(params.toString());
+
         if (userService.checkUserNameExists(params)
                 && userService.checkUserNameExists(params)) {
-            return "board/list";
+            return "redirect:/board/list.do";
         }
         return showMessageWithRedirect("존재하지 않는 사용자입니다", "/", Method.GET, null, model);
     }
