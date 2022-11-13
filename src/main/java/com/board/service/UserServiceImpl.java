@@ -12,8 +12,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public boolean signInUser(UserDTO params){
-        return userMapper.signInUser(params);
+    public boolean signUpUser(UserDTO params){
+        return userMapper.signUpUser(params);
     }
 
     @Override
