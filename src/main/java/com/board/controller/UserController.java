@@ -35,25 +35,23 @@ public class UserController extends UiUtils {
 
 
     @PostMapping(value = "/user/login")
-    public String loginUser(@ModelAttribute("params") UserDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
-        System.out.println(params.toString());
-
+    public String loginUser(@ModelAttribute("params") UserDTO params,
+                            @RequestParam(value = "idx", required = false) Long idx, Model model) {
         if (userService.checkUserNameExists(params)
                 && userService.checkUserNameExists(params)) {
-            return "redirect:/board/list.do";
+            return showMessageWithRedirect(params.getUsername() + "님, 환영합니다!", "/board/list.do", Method.GET, null, model);
         }
         return showMessageWithRedirect("존재하지 않는 사용자입니다", "/", Method.GET, null, model);
     }
 
-
     @PostMapping(value = "/user/register")
-    public String registerUser(@ModelAttribute("params") UserDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
-        if (userService.signUpUser(params)){
-            return "/";
+    public String registerUser(@ModelAttribute("params") UserDTO params,
+                            @RequestParam(value = "idx", required = false) Long idx, Model model) {
+        System.out.println(params.toString());
+        if (userService.signUpUser(params)) {
+            return showMessageWithRedirect("회원가입 성공, 로그인 해주세요!", "/", Method.GET, null, model);
         }
         return showMessageWithRedirect("에러 발생! 다시 회원가입 해주세용", "/signUp", Method.GET, null, model);
     }
-
-
 
 }
