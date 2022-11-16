@@ -33,7 +33,6 @@ public class UserController extends UiUtils {
         return "board/list";
     }
 
-
     @PostMapping(value = "/user/login")
     public String loginUser(@ModelAttribute("params") UserDTO params,
                             @RequestParam(value = "idx", required = false) Long idx, Model model) {
