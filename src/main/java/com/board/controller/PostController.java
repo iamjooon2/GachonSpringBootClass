@@ -1,6 +1,5 @@
 package com.board.controller;
 
-import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Map;
 
@@ -15,26 +14,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.constant.Method;
-import com.board.domain.BoardDTO;
-import com.board.service.BoardService;
+import com.board.domain.PostDTO;
+import com.board.service.PostService;
 import com.board.util.UiUtils;
 
 @Controller
-public class BoardController extends UiUtils {
+public class PostController extends UiUtils {
 
     @Autowired
-    private BoardService boardService;
+    private PostService postService;
 
     @GetMapping(value = "/board/write.do")
     public String openBoardWrite(
             @CookieValue(name = "username", required = false)
-            @ModelAttribute("params") BoardDTO params,
+            @ModelAttribute("params") PostDTO params,
             @RequestParam(value = "idx", required = false) Long idx, Model model) {
 
         if (idx == null) {
-            model.addAttribute("board", new BoardDTO());
+            model.addAttribute("board", new PostDTO());
         } else {
-            BoardDTO board = boardService.getBoardDetail(idx);
+            PostDTO board = postService.getBoardDetail(idx);
             if (board == null || "Y".equals(board.getDeleteYn())) {
                 return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/board/list.do", Method.GET, null, model);
             }
@@ -44,10 +43,10 @@ public class BoardController extends UiUtils {
     }
 
     @PostMapping(value = "/board/register.do")
-    public String registerBoard(@ModelAttribute("params") final BoardDTO params, Model model) {
+    public String registerBoard(@ModelAttribute("params") final PostDTO params, Model model) {
         Map<String, Object> pagingParams = getPagingParams(params);
         try {
-            boolean isRegistered = boardService.registerBoard(params);
+            boolean isRegistered = postService.registerBoard(params);
             if (isRegistered == false) {
                 return showMessageWithRedirect("게시글 등록에 실패하였습니다.", "/board/list.do", Method.GET, pagingParams, model);
             }
@@ -63,21 +62,21 @@ public class BoardController extends UiUtils {
     }
 
     @GetMapping(value = "/board/list.do")
-    public String openBoardList(@ModelAttribute("params") BoardDTO params, Model model) {
-        List<BoardDTO> boardList = boardService.getBoardList(params);
+    public String openBoardList(@ModelAttribute("params") PostDTO params, Model model) {
+        List<PostDTO> boardList = postService.getBoardList(params);
         model.addAttribute("boardList", boardList);
 
         return "board/list";
     }
 
     @GetMapping(value = "/board/view.do")
-    public String openBoardDetail(@ModelAttribute("params") BoardDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
+    public String openBoardDetail(@ModelAttribute("params") PostDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
         //조회수 업데이트
         if (idx == null) {
             return showMessageWithRedirect("올바르지 않은 접근입니다.", "/board/list.do", Method.GET, null, model);
         }
 
-        BoardDTO board = boardService.getBoardDetail(idx);
+        PostDTO board = postService.getBoardDetail(idx);
 
         if (board == null || "Y".equals(board.getDeleteYn())) {
             return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/board/list.do", Method.GET, null, model);
@@ -88,14 +87,14 @@ public class BoardController extends UiUtils {
     }
 
     @PostMapping(value = "/board/delete.do")
-    public String deleteBoard(@ModelAttribute("params") BoardDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
+    public String deleteBoard(@ModelAttribute("params") PostDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
         if (idx == null) {
             return showMessageWithRedirect("올바르지 않은 접근입니다.", "/board/list.do", Method.GET, null, model);
         }
         Map<String, Object> pagingParams = getPagingParams(params);
 
         try {
-            boolean isDeleted = boardService.deleteBoard(idx);
+            boolean isDeleted = postService.deleteBoard(idx);
             if (isDeleted == false) {
                 return showMessageWithRedirect("게시글 삭제에 실패하였습니다.", "/board/list.do", Method.GET, pagingParams, model);
             }

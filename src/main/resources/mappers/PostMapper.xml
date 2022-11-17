@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.board.mapper.BoardMapper">
-    <sql id="boardColumns">
+<mapper namespace="com.board.mapper.PostMapper">
+    <sql id="postColumns">
         idx
         , title
 		, content
@@ -15,9 +15,9 @@
 		, delete_time
     </sql>
 
-    <insert id="insertBoard" parameterType="boardDTO">
-        INSERT INTO board (
-        <include refid="boardColumns"/>
+    <insert id="insertBoard" parameterType="PostDTO">
+        INSERT INTO post (
+        <include refid="postColumns"/>
         ) VALUES (
         #{idx}
         , #{title}
@@ -32,18 +32,18 @@
         , NULL
         )
     </insert>
-    <select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
+    <select id="selectBoardDetail" parameterType="long" resultType="PostDTO">
         SELECT
-        <include refid="boardColumns"/>
+        <include refid="postColumns"/>
         FROM
-        board
+        post
         WHERE
         delete_yn = 'N'
         AND
         idx = #{idx}
     </select>
-    <update id="updateBoard" parameterType="BoardDTO">
-        UPDATE board
+    <update id="updateBoard" parameterType="PostDTO">
+        UPDATE post
         SET update_time = NOW()
           , title       = #{title}
           , content     = #{content}
@@ -53,16 +53,16 @@
         WHERE idx = #{idx}
     </update>
     <update id="deleteBoard" parameterType="long">
-        UPDATE board
+        UPDATE post
         SET delete_yn   = 'Y'
           , delete_time = NOW()
         WHERE idx = #{idx}
     </update>
-    <select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">
+    <select id="selectBoardList" parameterType="PostDTO" resultType="PostDTO">
         SELECT
-        <include refid="boardColumns"/>
+        <include refid="postColumns"/>
         FROM
-        board
+        post
         WHERE
         delete_yn = 'N'
         <include refid="CommonMapper.search"/>
@@ -72,19 +72,19 @@
         insert_time DESC
         <include refid="CommonMapper.paging"/>
     </select>
-    <select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
+    <select id="selectBoardTotalCount" parameterType="PostDTO" resultType="int">
         SELECT
         COUNT(*)
         FROM
-        board
+        post
         WHERE
         delete_yn = 'N'
         <include refid="CommonMapper.search"/>
     </select>
 
-    <update id="updateBoardCount" parameterType="BoardDTO">
+    <update id="updateBoardCount" parameterType="PostDTO">
         UPDATE
-            board
+            post
         SET
             view_cnt = view_cnt + 1
         WHERE

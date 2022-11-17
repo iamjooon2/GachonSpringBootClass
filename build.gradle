@@ -32,8 +32,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.projectlombok:lombok:1.16.20'
-    compileOnly 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {

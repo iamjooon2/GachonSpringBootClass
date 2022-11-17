@@ -1,6 +1,6 @@
 package com.board.domain;
 
-public class BoardDTO extends CommonDTO {
+public class PostDTO extends CommonDTO {
 
     private Long idx;
     private String title;

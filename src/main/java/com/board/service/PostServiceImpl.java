@@ -6,36 +6,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.board.domain.BoardDTO;
-import com.board.mapper.BoardMapper;
+import com.board.domain.PostDTO;
+import com.board.mapper.PostMapper;
 import com.board.paging.PaginationInfo;
 
 @Service
-public class BoardServiceImpl implements BoardService {
+public class PostServiceImpl implements PostService {
 	@Autowired
-	private BoardMapper boardMapper;
+	private PostMapper postMapper;
 	
 	@Override
-	public boolean registerBoard(BoardDTO params) {
+	public boolean registerBoard(PostDTO params) {
 		int queryResult = 0;
 		
 		if(params.getIdx() == null) {
-			queryResult = boardMapper.insertBoard(params);
+			queryResult = postMapper.insertBoard(params);
 		} else {
-			queryResult = boardMapper.updateBoard(params);
+			queryResult = postMapper.updateBoard(params);
 		}
 		return (queryResult == 1) ? true : false;
 	}
 	
 	@Override
-	public BoardDTO getBoardDetail(long idx) {
+	public PostDTO getBoardDetail(long idx) {
 		int result = updateBoardCount(idx);
-		return boardMapper.selectBoardDetail(idx);
+		return postMapper.selectBoardDetail(idx);
 	}
 
 	public int updateBoardCount(Long idx) {
 		//관련된 글 조회수 올리기
-		int result = boardMapper.updateBoardCount(idx);
+		int result = postMapper.updateBoardCount(idx);
 		return result;
 	}
 	@Override
@@ -43,20 +43,20 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		int queryResult = 0;
 		
-		BoardDTO board = boardMapper.selectBoardDetail(idx);
+		PostDTO board = postMapper.selectBoardDetail(idx);
 		
 		if (board != null && "N".equals(board.getDeleteYn())) {
-			queryResult = boardMapper.deleteBoard(idx);
+			queryResult = postMapper.deleteBoard(idx);
 		}
 		return (queryResult == 1) ? true : false;
 	}
 
 	@Override
-	public List<BoardDTO> getBoardList(BoardDTO params) {
+	public List<PostDTO> getBoardList(PostDTO params) {
 		// TODO Auto-generated method stub
-		List<BoardDTO> boardList = Collections.emptyList();
+		List<PostDTO> boardList = Collections.emptyList();
 		
-		int boardTotalCount = boardMapper.selectBoardTotalCount(params);
+		int boardTotalCount = postMapper.selectBoardTotalCount(params);
 		
 		PaginationInfo paginationInfo = new PaginationInfo(params);
 		paginationInfo.setTotalRecordCount(boardTotalCount);
@@ -64,7 +64,7 @@ public class BoardServiceImpl implements BoardService {
 		params.setPaginationInfo(paginationInfo);
 		
 		if(boardTotalCount > 0) {
-			boardList = boardMapper.selectBoardList(params);
+			boardList = postMapper.selectBoardList(params);
 		}
 		return boardList;
 	}
