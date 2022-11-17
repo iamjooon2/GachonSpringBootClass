@@ -4,6 +4,7 @@ import com.board.constant.Method;
 import com.board.domain.UserDTO;
 import com.board.service.UserService;
 import com.board.util.UiUtils;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 // 클라이언트로부터 받은 요청 중 사용자와 관련된 요청을 1차적으로 처리하는 컨트롤러
 @Controller
 public class UserController extends UiUtils {
+
+    // 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능 정규표현식
+    private final String idRegex = "^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/";
+    // 영문과 숫자 조합의 8-20자의 비밀번호 정규표현식
+    private final String passwordRegex = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$";
+
     @Autowired
     private UserService userService;
 
@@ -53,6 +60,13 @@ public class UserController extends UiUtils {
     @PostMapping(value = "/user/register")
     public String registerUser(@ModelAttribute("params") UserDTO params,
                                @RequestParam(value = "idx", required = false) Long idx, Model model) {
+
+        if (!Pattern.matches(passwordRegex, params.getPassword())){
+            return showMessageWithRedirect("비밀번호는 영문과 숫자 조합의 8-20자로 입력해주세요", "/signUp", Method.GET, null, model);
+        }
+        if (!Pattern.matches(idRegex, params.getUsername())){
+            return showMessageWithRedirect("아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력해주세요", "/signUp", Method.GET, null, model);
+        }
         if (userService.checkUserNameExists(params)) {
             // 사용자가 회원가입시 입력한 아이디가 데이터베이스에 존재하면, 메시지와 함께 회원가입 페이지를 다시 보여줍니다
             return showMessageWithRedirect("이미 존재하는 사용자 이름입니다.", "/signUp", Method.GET, null, model);
