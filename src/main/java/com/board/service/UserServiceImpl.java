@@ -17,6 +17,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updateUserNickname(long idx){
+        int a = userMapper.updateUserNickname(idx);
+        System.out.println(a);
+        return a;
+    }
+
+    @Override
     public boolean checkUserNameExists(UserDTO params){
         return userMapper.checkUserNameExists(params);
     }
@@ -27,8 +34,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean logInUser(UserDTO params){
-        return checkUserNameExists(params) && isPasswordTrue(params);
+    public long selectUserIdx(UserDTO params){
+        return userMapper.selectUserIdx(params);
     }
+
 
 }
