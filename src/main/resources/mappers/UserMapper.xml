@@ -41,20 +41,14 @@
         )
     </select>
 
-
-    <select id="isPasswordTrue" parameterType="UserDTO" resultType="boolean">
-        SELECT EXISTS
-            ( SELECT
-            <include refid="userColumns"/>
+    <select id="selectPassword" parameterType="UserDTO" resultType="String">
+        SELECT
+            password
         FROM
             user
         WHERE
             delete_yn = 'N'
         AND
             username = #{username}
-        AND
-            password = #{password}
-        )
     </select>
-
 </mapper>

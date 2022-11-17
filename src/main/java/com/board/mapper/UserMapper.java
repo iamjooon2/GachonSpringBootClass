@@ -13,5 +13,7 @@ public interface UserMapper {
     public boolean checkUserNameExists(UserDTO params);
     // 사용자의 패스워드가 일치하는지 확인하는 메서드
     public boolean isPasswordTrue(UserDTO params);
+    // 사용자 테이블에서 해당 유저의 비밀번호를 가져오는 메서드
+    public String selectPassword(UserDTO params);
 
 }
