@@ -18,6 +18,7 @@ import com.board.domain.PostDTO;
 import com.board.service.PostService;
 import com.board.util.UiUtils;
 
+// 클라이언트로부터 받은 요청 중 게시글과 관련된 요청을 1차적으로 처리하는 컨트롤러
 @Controller
 public class PostController extends UiUtils {
 

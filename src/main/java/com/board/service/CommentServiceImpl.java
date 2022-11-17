@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.board.domain.CommentDTO;
 import com.board.mapper.CommentMapper;
 
+// 댓글과 관련된 모든 비즈니스 로직을 처리하는 UserServiceImpl 클래스
 @Service
 public class CommentServiceImpl implements CommentService {
 

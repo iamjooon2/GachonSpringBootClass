@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.board.paging.Criteria;
 import com.board.paging.PaginationInfo;
 
+// DTO간 공통적으로 들어갈 내용을 정의해둔 클래스, 추후 다른 DTO에서 상속하여 사용한다
 public class CommonDTO extends Criteria {
 
     private PaginationInfo paginationInfo;

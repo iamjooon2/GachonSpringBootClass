@@ -5,6 +5,7 @@ import com.board.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// 사용자와 관련된 모든 비즈니스 로직을 처리하는 UserServiceImpl 클래스
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -17,13 +18,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUserNickname(long idx){
-        int a = userMapper.updateUserNickname(idx);
-        System.out.println(a);
-        return a;
-    }
-
-    @Override
     public boolean checkUserNameExists(UserDTO params){
         return userMapper.checkUserNameExists(params);
     }
@@ -33,10 +27,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.isPasswordTrue(params);
     }
 
-    @Override
-    public long selectUserIdx(UserDTO params){
-        return userMapper.selectUserIdx(params);
-    }
 
 
 }

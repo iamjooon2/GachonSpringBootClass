@@ -27,16 +27,6 @@
         )
     </insert>
 
-    <select id="selectUserIdx" parameterType="UserDTO" resultType="long">
-        select
-            idx
-        FROM
-            user
-        WHERE
-            username = #{username}
-    </select>
-
-
     <select id="checkUserNameExists" parameterType="UserDTO" resultType="boolean">
         SELECT EXISTS
             (

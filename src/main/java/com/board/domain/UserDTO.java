@@ -2,6 +2,8 @@ package com.board.domain;
 
 import java.time.LocalDateTime;
 
+// 사용자의 레이어간 이동을 위해 정의해둔 클래스
+// 컨트롤러 <-> 서비스 <-> 매퍼 <-> 데이터베이스간 이 UserDTO 형태로 데이터를 주고받는다
 public class UserDTO {
 
     private Long idx;

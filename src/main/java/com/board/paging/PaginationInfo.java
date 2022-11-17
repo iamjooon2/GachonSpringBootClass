@@ -1,5 +1,7 @@
 package com.board.paging;
 
+
+// 페이지네이션 처리를 위해 필요한 정보를 담은 클래스
 public class PaginationInfo {
     private Criteria criteria;
     private int totalRecordCount;

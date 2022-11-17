@@ -10,6 +10,7 @@ import com.board.domain.PostDTO;
 import com.board.mapper.PostMapper;
 import com.board.paging.PaginationInfo;
 
+// 게시글과 관련된 모든 비즈니스 로직을 처리하는 UserServiceImpl 클래스
 @Service
 public class PostServiceImpl implements PostService {
 	@Autowired

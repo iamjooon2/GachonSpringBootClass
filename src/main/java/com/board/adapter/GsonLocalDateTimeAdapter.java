@@ -12,6 +12,8 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+// 스프링부트에서 시간 관련 조작을 위해 따로 설정해준 파일application.properties의
+// application.properties의 spring.mvc.converters.preferred-json-mapper=gson 설정과 해당 파일 설정이 필요함
 public class GsonLocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
 
     @Override
