@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +26,11 @@ public class BoardController extends UiUtils {
     private BoardService boardService;
 
     @GetMapping(value = "/board/write.do")
-    public String openBoardWrite(@ModelAttribute("params") BoardDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
+    public String openBoardWrite(
+            @CookieValue(name = "username", required = false)
+            @ModelAttribute("params") BoardDTO params,
+            @RequestParam(value = "idx", required = false) Long idx, Model model) {
+
         if (idx == null) {
             model.addAttribute("board", new BoardDTO());
         } else {
@@ -66,6 +72,7 @@ public class BoardController extends UiUtils {
 
     @GetMapping(value = "/board/view.do")
     public String openBoardDetail(@ModelAttribute("params") BoardDTO params, @RequestParam(value = "idx", required = false) Long idx, Model model) {
+        //조회수 업데이트
         if (idx == null) {
             return showMessageWithRedirect("올바르지 않은 접근입니다.", "/board/list.do", Method.GET, null, model);
         }

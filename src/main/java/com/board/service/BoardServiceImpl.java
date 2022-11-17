@@ -29,9 +29,15 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public BoardDTO getBoardDetail(long idx) {
+		int result = updateBoardCount(idx);
 		return boardMapper.selectBoardDetail(idx);
 	}
 
+	public int updateBoardCount(Long idx) {
+		//관련된 글 조회수 올리기
+		int result = boardMapper.updateBoardCount(idx);
+		return result;
+	}
 	@Override
 	public boolean deleteBoard(long idx) {
 		// TODO Auto-generated method stub
